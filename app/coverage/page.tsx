@@ -6,8 +6,8 @@ import Footer from '@/components/Footer';
 import OFBSNavbar from '@/components/Navbar';
 
 const GlobalCoveragePage = () => {
-  const [isVisible, setIsVisible] = useState({});
-  const observerRef = useRef(null);
+  const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -22,7 +22,7 @@ const GlobalCoveragePage = () => {
     );
 
     document.querySelectorAll('[data-animate]').forEach((el) => {
-      observerRef.current.observe(el);
+      observerRef.current?.observe(el);
     });
 
     return () => observerRef.current?.disconnect();
@@ -239,22 +239,26 @@ const GlobalCoveragePage = () => {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <div id="cta-content" data-animate className={isVisible['cta-content'] ? 'animate-fade-up' : 'opacity-0'}>
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Ready to Connect
-              <br />
-              <span className="text-blue-100">Anywhere on Earth?</span>
-            </h2>
-            
-            <p className="text-xl text-blue-100/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Join thousands of enterprises trusting our satellite network for their most critical communications. Get started today with a consultation from our aerospace experts.
-            </p>
+         <div
+  id="cta-content"
+  data-animate
+  className={isVisible["cta-content"] ? "animate-fade-up" : "opacity-0"}
+>
+  <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+    Ready to Connect
+    <br />
+    <span className="text-blue-100">Anywhere on Earth?</span>
+  </h2>
 
-            <button className="group px-10 py-5 bg-white text-[#2563EB] rounded-xl font-bold text-lg shadow-xl shadow-white/20 hover:shadow-2xl hover:shadow-white/30 hover:scale-105 transition-all duration-300 inline-flex items-center gap-3">
-              Schedule Consultation
-              <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
-            </button>
-          </div>
+  <p className="text-xl text-blue-100/80 mb-12 max-w-2xl mx-auto leading-relaxed">
+    Join thousands of enterprises trusting our satellite network for their most critical communications. Get started today with a consultation from our aerospace experts.
+  </p>
+
+  <button className="group px-10 py-5 bg-white text-[#2563EB] rounded-xl font-bold text-lg shadow-xl shadow-white/20 hover:shadow-2xl hover:shadow-white/30 hover:scale-105 transition-all duration-300 inline-flex items-center gap-3">
+    Schedule Consultation
+    <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+  </button>
+</div>
         </div>
       </section>
 
