@@ -1,14 +1,29 @@
 "use client";
 import React, { useState, useRef } from "react";
-import { motion, useInView, AnimatePresence,  Variants } from "framer-motion";
+import { motion, useInView, AnimatePresence, Variants } from "framer-motion";
 import { Satellite, Globe, Radio, ChevronDown } from "lucide-react";
 
+interface SatelliteMap {
+  [region: string]: string;
+}
+
+interface SatelliteInfo {
+  position: string;
+  angle: string;
+  band: string;
+  regions: string[];
+  maps: SatelliteMap;
+}
+
+interface SatelliteDataType {
+  [key: string]: SatelliteInfo;
+}
 
 const SatelliteCoverageSection = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  const satelliteData = {
+  const satelliteData: SatelliteDataType = {
     "HellasSat 3": {
       position: "39° E",
       angle: "0 - 90°",
@@ -93,27 +108,26 @@ const SatelliteCoverageSection = () => {
     },
   };
 
-  const [selectedRegion, setSelectedRegion] = useState("Middle East");
-  const [isSatelliteOpen, setIsSatelliteOpen] = useState(false);
-  const [isRegionOpen, setIsRegionOpen] = useState(false);
+  const [selectedSatellite, setSelectedSatellite] = useState<string>("HellasSat 3");
+  const [selectedRegion, setSelectedRegion] = useState<string>("Middle East");
+  const [isSatelliteOpen, setIsSatelliteOpen] = useState<boolean>(false);
+  const [isRegionOpen, setIsRegionOpen] = useState<boolean>(false);
 
+  const currentSatellite = satelliteData[selectedSatellite];
+  const currentMap = currentSatellite.maps[selectedRegion];
 
-
- const currentSatellite = satelliteData[selectedSatellite];
- const [selectedSatellite, setSelectedSatellite] = useState("HellasSat 3");
-
-  const handleSatelliteChange = (satellite) => {
+  const handleSatelliteChange = (satellite: string) => {
     setSelectedSatellite(satellite);
     setSelectedRegion(satelliteData[satellite].regions[0]);
     setIsSatelliteOpen(false);
   };
 
-  const handleRegionChange = (region) => {
+  const handleRegionChange = (region: string) => {
     setSelectedRegion(region);
     setIsRegionOpen(false);
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -124,7 +138,7 @@ const SatelliteCoverageSection = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -136,28 +150,28 @@ const SatelliteCoverageSection = () => {
     },
   };
 
-  // brand colors
+  // OFBS brand colors
   const primaryFrom = "#2563EB";
   const primaryTo = "#1E3A8A";
-  const softBg = "rgba(37,99,235,0.06)"; // subtle blue tint
+  const accentCyan = "#06B6D4";
+  const softBg = "rgba(37,99,235,0.06)";
 
   return (
     <section
       ref={sectionRef}
       className="relative py-20 md:py-32 overflow-hidden"
-      // gradient background: white -> soft blue -> white
       style={{
         background:
-          "linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(243,248,255,1) 30%, rgba(255,255,255,1) 100%)",
+          "linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(241,245,249,1) 30%, rgba(255,255,255,1) 100%)",
       }}
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Gradient Orbs (blue theme) */}
+        {/* Gradient Orbs */}
         <motion.div
           animate={{
             scale: [1, 1.14, 1],
-            opacity: [0.08, 0.14, 0.08],
+            opacity: [0.12, 0.18, 0.12],
           }}
           transition={{
             duration: 9,
@@ -166,13 +180,13 @@ const SatelliteCoverageSection = () => {
           }}
           className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl"
           style={{
-            background: `radial-gradient(circle at 30% 30%, ${primaryFrom}33, ${primaryTo}22)`,
+            background: `radial-gradient(circle at 30% 30%, rgba(37,99,235,0.12), rgba(30,58,138,0.06))`,
           }}
         />
         <motion.div
           animate={{
             scale: [1, 1.18, 1],
-            opacity: [0.06, 0.12, 0.06],
+            opacity: [0.08, 0.12, 0.08],
           }}
           transition={{
             duration: 11,
@@ -182,7 +196,7 @@ const SatelliteCoverageSection = () => {
           }}
           className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full blur-3xl"
           style={{
-            background: `radial-gradient(circle at 70% 70%, ${primaryTo}33, ${primaryFrom}11)`,
+            background: `radial-gradient(circle at 70% 70%, rgba(6,182,212,0.08), rgba(37,99,235,0.05))`,
           }}
         />
 
@@ -194,7 +208,7 @@ const SatelliteCoverageSection = () => {
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              background: primaryFrom,
+              background: accentCyan,
             }}
             animate={{
               y: [0, -28 - Math.random() * 12, 0],
@@ -208,12 +222,12 @@ const SatelliteCoverageSection = () => {
           />
         ))}
 
-        {/* Grid Pattern (very subtle blue) */}
+        {/* Grid Pattern */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.015]"
           style={{
-            backgroundImage: `linear-gradient(rgba(37,99,235,0.18) 1px, transparent 1px),
-                             linear-gradient(90deg, rgba(37,99,235,0.18) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(rgba(37,99,235,0.5) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(37,99,235,0.5) 1px, transparent 1px)`,
             backgroundSize: "50px 50px",
           }}
         />
@@ -232,13 +246,13 @@ const SatelliteCoverageSection = () => {
             <div
               className="absolute inset-0 blur-3xl opacity-20"
               style={{
-                background: `radial-gradient(circle at 50% 50%, ${primaryFrom}22, transparent 40%)`,
+                background: `radial-gradient(circle at 50% 50%, rgba(37,99,235,0.2), transparent 40%)`,
               }}
             />
 
             <h2
-              className="relative text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black tracking-tight"
-              style={{ lineHeight: 1.02 }}
+              className="relative text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+              style={{ lineHeight: 1.02, color: "#0F172A" }}
             >
               Satellite{" "}
               <span
@@ -255,7 +269,8 @@ const SatelliteCoverageSection = () => {
           {/* Subheading */}
           <motion.p
             variants={itemVariants}
-            className="text-lg sm:text-xl md:text-2xl text-gray-800 max-w-4xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed"
+            style={{ color: "#475569" }}
           >
             Explore our comprehensive satellite coverage across multiple regions worldwide
           </motion.p>
@@ -265,7 +280,7 @@ const SatelliteCoverageSection = () => {
             variants={itemVariants}
             className="mt-8 w-24 h-1 mx-auto rounded-full"
             style={{
-              background: `linear-gradient(to right, transparent, ${primaryFrom}66, transparent)`,
+              background: `linear-gradient(to right, transparent, ${primaryFrom}, transparent)`,
             }}
           />
         </motion.div>
@@ -280,58 +295,62 @@ const SatelliteCoverageSection = () => {
           <div
             className="rounded-2xl border-2 shadow-lg p-6"
             style={{
-              background: `linear-gradient(90deg, ${primaryFrom}12, rgba(255,255,255,0.85))`,
-              borderColor: `${primaryFrom}55`,
+              background: `linear-gradient(90deg, rgba(37,99,235,0.06), rgba(255,255,255,0.95))`,
+              borderColor: "#E2E8F0",
             }}
           >
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
               {/* Satellite Name */}
               <div className="space-y-1">
-                <p className="text-xs uppercase tracking-wider text-slate-800 font-semibold">
+                <p className="text-xs uppercase tracking-wider font-semibold" style={{ color: "#334155" }}>
                   Satellite Name
                 </p>
-                <p className="text-lg font-semibold text-black flex items-center space-x-2">
-                  <Satellite className="w-5 h-5 text-black" />
+                <p className="text-lg font-semibold flex items-center space-x-2" style={{ color: "#0F172A" }}>
+                  <Satellite className="w-5 h-5" style={{ color: "#2563EB" }} />
                   <span>{selectedSatellite}</span>
                 </p>
               </div>
 
               {/* Position */}
               <div className="space-y-1">
-                <p className="text-xs uppercase tracking-wider text-slate-800 font-semibold">
+                <p className="text-xs uppercase tracking-wider font-semibold" style={{ color: "#334155" }}>
                   Position
                 </p>
-                <p className="text-lg font-semibold text-black flex items-center space-x-2">
-                  <Globe className="w-5 h-5 text-black" />
+                <p className="text-lg font-semibold flex items-center space-x-2" style={{ color: "#0F172A" }}>
+                  <Globe className="w-5 h-5" style={{ color: "#2563EB" }} />
                   <span>{currentSatellite.position}</span>
                 </p>
               </div>
 
               {/* Coverage Angle */}
               <div className="space-y-1">
-                <p className="text-xs uppercase tracking-wider text-slate-800 font-semibold">
+                <p className="text-xs uppercase tracking-wider font-semibold" style={{ color: "#334155" }}>
                   Coverage Angle
                 </p>
-                <p className="text-lg font-semibold text-black">{currentSatellite.angle}</p>
+                <p className="text-lg font-semibold" style={{ color: "#0F172A" }}>
+                  {currentSatellite.angle}
+                </p>
               </div>
 
               {/* Frequency Band */}
               <div className="space-y-1">
-                <p className="text-xs uppercase tracking-wider text-slate-800 font-semibold">
+                <p className="text-xs uppercase tracking-wider font-semibold" style={{ color: "#334155" }}>
                   Frequency Band
                 </p>
-                <p className="text-lg font-semibold text-black flex items-center space-x-2">
-                  <Radio className="w-5 h-5 text-black" />
+                <p className="text-lg font-semibold flex items-center space-x-2" style={{ color: "#0F172A" }}>
+                  <Radio className="w-5 h-5" style={{ color: "#2563EB" }} />
                   <span>{currentSatellite.band}</span>
                 </p>
               </div>
 
               {/* Selected Region */}
               <div className="space-y-1">
-                <p className="text-xs uppercase tracking-wider text-slate-800 font-semibold">
+                <p className="text-xs uppercase tracking-wider font-semibold" style={{ color: "#334155" }}>
                   Selected Region
                 </p>
-                <p className="text-lg font-semibold text-black">{selectedRegion}</p>
+                <p className="text-lg font-semibold" style={{ color: "#0F172A" }}>
+                  {selectedRegion}
+                </p>
               </div>
             </div>
           </div>
@@ -348,28 +367,37 @@ const SatelliteCoverageSection = () => {
           >
             <div
               className="bg-white/90 backdrop-blur-xl rounded-2xl border-2 shadow-xl p-6 space-y-6 sticky top-24"
-              style={{ borderColor: `${primaryFrom}33` }}
+              style={{ borderColor: "#E2E8F0" }}
             >
               {/* Sidebar Title */}
-              <div className="pb-4 border-b-2" style={{ borderColor: `${primaryFrom}22` }}>
-                <h3 className="text-2xl font-bold text-black">Satellite Coverage</h3>
-                <p className="text-sm text-slate-700 mt-1">Select satellite and region</p>
+              <div className="pb-4 border-b-2" style={{ borderColor: "#F1F5F9" }}>
+                <h3 className="text-2xl font-bold" style={{ color: "#0F172A" }}>
+                  Satellite Coverage
+                </h3>
+                <p className="text-sm mt-1" style={{ color: "#475569" }}>
+                  Select satellite and region
+                </p>
               </div>
 
               {/* Satellite Dropdown */}
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-black">Satellite Name</label>
+                <label className="block text-sm font-semibold" style={{ color: "#0F172A" }}>
+                  Satellite Name
+                </label>
                 <div className="relative">
                   <button
                     onClick={() => setIsSatelliteOpen(!isSatelliteOpen)}
-                    className="w-full px-4 py-3 bg-white border-2 border-slate-200 rounded-lg text-left flex items-center justify-between hover:border-slate-400 focus:border-slate-400 focus:ring-2 transition-all duration-300"
-                    style={{ boxShadow: "0 1px 0 rgba(30,58,138,0.03)" }}
+                    className="w-full px-4 py-3 bg-white border-2 rounded-lg text-left flex items-center justify-between hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+                    style={{ borderColor: "#E2E8F0" }}
                   >
-                    <span className="text-black font-medium">{selectedSatellite}</span>
+                    <span className="font-medium" style={{ color: "#0F172A" }}>
+                      {selectedSatellite}
+                    </span>
                     <ChevronDown
-                      className={`w-5 h-5 text-slate-600 transition-transform duration-300 ${
+                      className={`w-5 h-5 transition-transform duration-300 ${
                         isSatelliteOpen ? "rotate-180" : ""
                       }`}
+                      style={{ color: "#475569" }}
                     />
                   </button>
 
@@ -380,21 +408,25 @@ const SatelliteCoverageSection = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         className="absolute z-50 w-full mt-2 bg-white border-2 rounded-lg shadow-xl overflow-hidden"
-                        style={{ borderColor: `${primaryFrom}33` }}
+                        style={{ borderColor: "#E2E8F0" }}
                       >
                         {Object.keys(satelliteData).map((satellite) => (
                           <button
                             key={satellite}
                             onClick={() => handleSatelliteChange(satellite)}
-                            className="w-full px-4 py-3 text-left transition-colors duration-200 border-b border-slate-200 last:border-b-0"
+                            className="w-full px-4 py-3 text-left transition-colors duration-200 border-b last:border-b-0"
                             style={{
                               backgroundColor: selectedSatellite === satellite ? softBg : "white",
+                              borderColor: "#F1F5F9",
                             }}
                           >
                             <span
-                              className={`${
-                                selectedSatellite === satellite ? "text-black font-semibold" : "text-slate-800"
-                              }`}
+                              className={
+                                selectedSatellite === satellite ? "font-semibold" : ""
+                              }
+                              style={{
+                                color: selectedSatellite === satellite ? "#0F172A" : "#475569",
+                              }}
                             >
                               {satellite}
                             </span>
@@ -408,17 +440,23 @@ const SatelliteCoverageSection = () => {
 
               {/* Region Dropdown */}
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-black">Region</label>
+                <label className="block text-sm font-semibold" style={{ color: "#0F172A" }}>
+                  Region
+                </label>
                 <div className="relative">
                   <button
                     onClick={() => setIsRegionOpen(!isRegionOpen)}
-                    className="w-full px-4 py-3 bg-white border-2 border-slate-200 rounded-lg text-left flex items-center justify-between hover:border-slate-400 focus:border-slate-400 focus:ring-2 transition-all duration-300"
+                    className="w-full px-4 py-3 bg-white border-2 rounded-lg text-left flex items-center justify-between hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+                    style={{ borderColor: "#E2E8F0" }}
                   >
-                    <span className="text-black font-medium">{selectedRegion}</span>
+                    <span className="font-medium" style={{ color: "#0F172A" }}>
+                      {selectedRegion}
+                    </span>
                     <ChevronDown
-                      className={`w-5 h-5 text-slate-600 transition-transform duration-300 ${
+                      className={`w-5 h-5 transition-transform duration-300 ${
                         isRegionOpen ? "rotate-180" : ""
                       }`}
+                      style={{ color: "#475569" }}
                     />
                   </button>
 
@@ -429,18 +467,24 @@ const SatelliteCoverageSection = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         className="absolute z-50 w-full mt-2 bg-white border-2 rounded-lg shadow-xl overflow-hidden"
-                        style={{ borderColor: `${primaryFrom}33` }}
+                        style={{ borderColor: "#E2E8F0" }}
                       >
                         {currentSatellite.regions.map((region) => (
                           <button
                             key={region}
                             onClick={() => handleRegionChange(region)}
-                            className="w-full px-4 py-3 text-left transition-colors duration-200 border-b border-slate-200 last:border-b-0"
+                            className="w-full px-4 py-3 text-left transition-colors duration-200 border-b last:border-b-0"
                             style={{
                               backgroundColor: selectedRegion === region ? softBg : "white",
+                              borderColor: "#F1F5F9",
                             }}
                           >
-                            <span className={`${selectedRegion === region ? "text-black font-semibold" : "text-slate-800"}`}>
+                            <span
+                              className={selectedRegion === region ? "font-semibold" : ""}
+                              style={{
+                                color: selectedRegion === region ? "#0F172A" : "#475569",
+                              }}
+                            >
                               {region}
                             </span>
                           </button>
@@ -452,9 +496,15 @@ const SatelliteCoverageSection = () => {
               </div>
 
               {/* Info Badge */}
-              <div className="pt-4 border-t-2" style={{ borderColor: `${primaryFrom}22` }}>
-                <div className="rounded-xl p-4 border" style={{ background: `${primaryFrom}08`, borderColor: `${primaryFrom}22` }}>
-                  <p className="text-xs text-slate-900 font-medium">
+              <div className="pt-4 border-t-2" style={{ borderColor: "#F1F5F9" }}>
+                <div
+                  className="rounded-xl p-4 border"
+                  style={{
+                    background: "rgba(37,99,235,0.05)",
+                    borderColor: "#E2E8F0",
+                  }}
+                >
+                  <p className="text-xs font-medium" style={{ color: "#334155" }}>
                     💡 Select a satellite and region to view the corresponding coverage map
                   </p>
                 </div>
@@ -469,7 +519,10 @@ const SatelliteCoverageSection = () => {
             transition={{ delay: 1, duration: 0.8 }}
             className="lg:col-span-7"
           >
-            <div className="bg-white rounded-2xl border-2 shadow-xl p-4 overflow-hidden" style={{ borderColor: `${primaryFrom}22` }}>
+            <div
+              className="bg-white rounded-2xl border-2 shadow-xl p-4 overflow-hidden"
+              style={{ borderColor: "#E2E8F0" }}
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`${selectedSatellite}-${selectedRegion}`}
@@ -477,7 +530,8 @@ const SatelliteCoverageSection = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.5 }}
-                  className="relative rounded-xl overflow-hidden aspect-video bg-gray-100"
+                  className="relative rounded-xl overflow-hidden aspect-video"
+                  style={{ backgroundColor: "#F1F5F9" }}
                 >
                   {/* Actual Satellite Coverage Map Image */}
                   <img
@@ -486,23 +540,21 @@ const SatelliteCoverageSection = () => {
                     className="w-full h-full object-contain"
                   />
 
-                  {/* Decorative border glow */}
-                  <div
-                    className="absolute inset-0 border-2 rounded-xl pointer-events-none"
-                    style={{ borderImage: `linear-gradient(90deg, ${primaryFrom}, ${primaryTo}) 1`, opacity: 0.28 }}
-                  />
-
                   {/* Image overlay info */}
                   <div
                     className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg p-3 border shadow-lg"
-                    style={{ borderColor: `${primaryFrom}22` }}
+                    style={{ borderColor: "#E2E8F0" }}
                   >
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-bold text-black">{selectedSatellite}</p>
-                        <p className="text-xs text-slate-700">{selectedRegion} Coverage Map</p>
+                        <p className="text-sm font-bold" style={{ color: "#0F172A" }}>
+                          {selectedSatellite}
+                        </p>
+                        <p className="text-xs" style={{ color: "#475569" }}>
+                          {selectedRegion} Coverage Map
+                        </p>
                       </div>
-                      <div className="flex items-center space-x-2 text-black">
+                      <div className="flex items-center space-x-2" style={{ color: "#2563EB" }}>
                         <Satellite className="w-5 h-5" />
                         <span className="text-xs font-semibold">{currentSatellite.position}</span>
                       </div>
@@ -522,21 +574,9 @@ const SatelliteCoverageSection = () => {
         transition={{ delay: 1.2, duration: 1.5 }}
         className="absolute bottom-0 left-0 right-0 h-px origin-center"
         style={{
-          background: `linear-gradient(to right, transparent, ${primaryFrom}55, transparent)`,
+          background: `linear-gradient(to right, transparent, rgba(37,99,235,0.3), transparent)`,
         }}
       />
-
-      <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
-
-        * {
-          font-family: 'Inter', sans-serif;
-        }
-
-        h1, h2, h3, h4 {
-          font-family: 'Poppins', sans-serif;
-        }
-      `}</style>
     </section>
   );
 };
