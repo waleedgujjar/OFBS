@@ -417,16 +417,17 @@ import Footer from '@/components/Footer';
                       >
                         Message *
                       </label>
-                      <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        rows="6"
-                        className="w-full px-4 py-4 border-2 border-[#E2E8F0] rounded-xl focus:border-[#2563EB] focus:outline-none transition-colors text-[#0F172A] resize-none"
-                        style={{ fontFamily: "'Inter', sans-serif" }}
-                        placeholder="Tell us more about your requirements..."
-                      />
+                     <textarea
+  name="message"
+  value={formData.message}
+  onChange={handleChange}
+  required
+  rows={6}   
+  className="w-full px-4 py-4 border-2 border-[#E2E8F0] rounded-xl focus:border-[#2563EB] focus:outline-none transition-colors text-[#0F172A] resize-none"
+  style={{ fontFamily: "'Inter', sans-serif" }}
+  placeholder="Tell us more about your requirements..."
+/>
+
                     </div>
 
                     {/* Submit Button */}
