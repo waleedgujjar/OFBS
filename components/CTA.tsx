@@ -6,8 +6,10 @@ import { useInView } from "react-intersection-observer";
 import { Rocket, ArrowRight } from "lucide-react";
 
 const CTASection: React.FC = () => {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true });
+const [sectionRef, inView] = useInView({
+  triggerOnce: true,
+  rootMargin: "-120px",
+});
 
   return (
     <section
@@ -68,7 +70,7 @@ const CTASection: React.FC = () => {
       <div className="relative max-w-5xl mx-auto px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
           <motion.div
@@ -109,7 +111,7 @@ const CTASection: React.FC = () => {
 
           <motion.p
             initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
+            animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-8 text-blue-200 text-sm"
           >

@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion,  Variants } from 'framer-motion';
 import { Award, Zap, Headphones, Shield } from 'lucide-react';
 
 const WhyChooseUs = () => {
@@ -42,7 +42,7 @@ const WhyChooseUs = () => {
     }
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { 
       opacity: 0, 
       y: 50 

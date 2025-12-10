@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, Variants } from 'framer-motion';
 import { Wifi, Network, Server, Cloud, Shield, Headphones, ArrowRight } from 'lucide-react';
 
 const ServicesSection = () => {
@@ -57,7 +57,7 @@ const ServicesSection = () => {
     }
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -68,13 +68,13 @@ const ServicesSection = () => {
     }
   };
 
-  const cardVariants = {
+  const cardVariants : Variants = {
     hidden: { 
       opacity: 0, 
       y: 30,
       scale: 0.95
     },
-    visible: (i) => ({
+    visible: (i: number) => ({
       opacity: 1,
       y: 0,
       scale: 1,

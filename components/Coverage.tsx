@@ -1,15 +1,8 @@
 "use client";
 import React, { useState, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, AnimatePresence,  Variants } from "framer-motion";
 import { Satellite, Globe, Radio, ChevronDown } from "lucide-react";
 
-/**
- * SatelliteCoverageSection - Updated to OFBS blue gradient theme
- * Primary gradient: #2563EB -> #1E3A8A
- * Background: white -> soft-blue gradient overlay
- *
- * Place image assets in /public as before.
- */
 
 const SatelliteCoverageSection = () => {
   const sectionRef = useRef(null);
@@ -100,21 +93,24 @@ const SatelliteCoverageSection = () => {
     },
   };
 
-  const [selectedSatellite, setSelectedSatellite] = useState("HellasSat 3");
   const [selectedRegion, setSelectedRegion] = useState("Middle East");
   const [isSatelliteOpen, setIsSatelliteOpen] = useState(false);
   const [isRegionOpen, setIsRegionOpen] = useState(false);
 
-  const currentSatellite = satelliteData[selectedSatellite];
+type SatelliteName = keyof typeof satelliteData;
+
+const [selectedSatellite, setSelectedSatellite] = useState<SatelliteName>("HellasSat 3");
+
+const currentSatellite = satelliteData[selectedSatellite];
   const currentMap = currentSatellite.maps[selectedRegion];
 
-  const handleSatelliteChange = (satellite) => {
+  const handleSatelliteChange = (satellite: SatelliteName) => {
     setSelectedSatellite(satellite);
     setSelectedRegion(satelliteData[satellite].regions[0]);
     setIsSatelliteOpen(false);
   };
 
-  const handleRegionChange = (region) => {
+  const handleRegionChange = (region: string) => {
     setSelectedRegion(region);
     setIsRegionOpen(false);
   };
@@ -130,7 +126,7 @@ const SatelliteCoverageSection = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,

@@ -3,28 +3,27 @@ import React, { useEffect, useRef, useState } from 'react';
 import { TrendingUp, LineChart, DollarSign, MapPin, BarChart3, FileSearch } from 'lucide-react';
 
 const ServiceOfferings = () => {
-  const [isVisible, setIsVisible] = useState({});
-  const observerRef = useRef(null);
-
-  useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }));
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    document.querySelectorAll('[data-animate]').forEach((el) => {
-      observerRef.current.observe(el);
-    });
-
-    return () => observerRef.current?.disconnect();
-  }, []);
-
+  const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
+    const observerRef = useRef<IntersectionObserver | null>(null);
+  
+    useEffect(() => {
+      observerRef.current = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }));
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+  
+      document.querySelectorAll('[data-animate]').forEach((el) => {
+        observerRef.current?.observe(el);
+      });
+  
+      return () => observerRef.current?.disconnect();
+    }, []);
   const services = [
     {
       icon: TrendingUp,

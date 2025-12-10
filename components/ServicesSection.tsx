@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, Variants } from 'framer-motion';
 import { 
   Satellite, 
   Radio, 
@@ -78,7 +78,7 @@ const ServicesSection = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -90,9 +90,9 @@ const ServicesSection = () => {
     }
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { opacity: 0, scale: 0.9, y: 20 },
-    visible: (custom) => ({
+    visible: (custom: number) => ({
       opacity: 1,
       scale: 1,
       y: 0,

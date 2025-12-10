@@ -3,8 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Award, ThumbsUp, Layers, TrendingUp, Headphones } from 'lucide-react';
 
 const WhyChooseUs = () => {
-  const [isVisible, setIsVisible] = useState({});
-  const observerRef = useRef(null);
+   const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
+    const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -19,7 +19,7 @@ const WhyChooseUs = () => {
     );
 
     document.querySelectorAll('[data-animate]').forEach((el) => {
-      observerRef.current.observe(el);
+      observerRef.current?.observe(el);
     });
 
     return () => observerRef.current?.disconnect();

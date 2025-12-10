@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { ArrowRight, Play, Shield, Zap, TrendingUp } from "lucide-react";
 
 const HeroSection = () => {
@@ -18,7 +18,7 @@ const HeroSection = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants =  {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -30,7 +30,7 @@ const HeroSection = () => {
     }
   };
 
-  const buttonVariants = {
+  const buttonVariants: Variants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: {
       opacity: 1,

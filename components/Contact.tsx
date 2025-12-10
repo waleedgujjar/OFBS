@@ -1,34 +1,29 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 
 export default function ContactSection() {
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: "-120px" });
 
-  // Motion variants
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.12, delayChildren: 0.12 } },
   };
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, y: 16 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.2, 0.9, 0.3, 1] } },
   };
 
-  // particles positions (static seeds)
   const particles = Array.from({ length: 14 });
 
-  // Basic form submit (replace with API)
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Example: collect values, validate, call API
-    const data = new FormData(e.target);
+    const data = new FormData(e.target as HTMLFormElement);
     console.log("contact submit", Object.fromEntries(data.entries()));
-    // show success toast, reset, etc.
-    e.target.reset();
+    (e.target as HTMLFormElement).reset();
     alert("Message sent (mock). We will contact you shortly.");
   };
 
