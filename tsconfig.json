@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "components/Coverage.jsx"  ],
+, "components/Coverage.jsx", "components/IntroStorySection.jsx", "components/Market.jsx"  ],
   "exclude": ["node_modules"]
 }

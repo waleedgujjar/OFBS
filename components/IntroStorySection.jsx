@@ -5,13 +5,9 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { CheckCircle, Globe, Award, Shield } from "lucide-react";
 
-interface Value {
-  title: string;
-  description: string;
-  icon: any;
-}
 
-const values: Value[] = [
+
+const values= [
   { title: "Innovation", description: "Driving new ideas and solutions.", icon: Globe },
   { title: "Reliability", description: "Consistently delivering on promises.", icon: Shield },
   { title: "Global Connectivity", description: "Connecting clients worldwide.", icon: Globe },
@@ -19,7 +15,7 @@ const values: Value[] = [
   { title: "Customer-first", description: "Prioritizing client success.", icon: CheckCircle },
 ];
 
-const IntroStorySection: React.FC = () => {
+const IntroStorySection = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
   const [activeIndex, setActiveIndex] = useState(0);
