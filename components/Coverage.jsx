@@ -97,20 +97,18 @@ const SatelliteCoverageSection = () => {
   const [isSatelliteOpen, setIsSatelliteOpen] = useState(false);
   const [isRegionOpen, setIsRegionOpen] = useState(false);
 
-type SatelliteName = keyof typeof satelliteData;
 
-const [selectedSatellite, setSelectedSatellite] = useState<SatelliteName>("HellasSat 3");
 
-const currentSatellite = satelliteData[selectedSatellite];
-  const currentMap = currentSatellite.maps[selectedRegion];
+ const currentSatellite = satelliteData[selectedSatellite];
+ const [selectedSatellite, setSelectedSatellite] = useState("HellasSat 3");
 
-  const handleSatelliteChange = (satellite: SatelliteName) => {
+  const handleSatelliteChange = (satellite) => {
     setSelectedSatellite(satellite);
     setSelectedRegion(satelliteData[satellite].regions[0]);
     setIsSatelliteOpen(false);
   };
 
-  const handleRegionChange = (region: string) => {
+  const handleRegionChange = (region) => {
     setSelectedRegion(region);
     setIsRegionOpen(false);
   };
@@ -126,7 +124,7 @@ const currentSatellite = satelliteData[selectedSatellite];
     },
   };
 
-  const itemVariants: Variants = {
+  const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
