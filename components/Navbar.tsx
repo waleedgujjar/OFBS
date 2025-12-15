@@ -18,7 +18,6 @@ const OFBSNavbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when clicking outside or on links
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsMobileDropdownOpen(false);
@@ -55,14 +54,12 @@ const OFBSNavbar = () => {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {/* LOGO */}
+
 
 <Link href="/" className="flex-shrink-0 group cursor-pointer">
   <div className="flex items-center space-x-3">
     <div className="relative">
       <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB] to-[#1E3A8A] rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition duration-500"></div>
-
-      {/* Increased size here */}
       <div className="relative w-30 h-30 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition duration-500 overflow-hidden">
         <Image 
           src="/logo.png" 
