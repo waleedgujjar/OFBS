@@ -128,7 +128,7 @@ const ICTHeroSection = () => {
           }`}
         >
           <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent">
-            ICT Solutions
+           Satellite Services Solutions
           </span>
           <br />
           <span className="text-slate-900">That Transform</span>
@@ -316,9 +316,6 @@ const ICTHeroSection = () => {
       </section>
       <section className="relative z-20 w-full">
         <MarketSegmentsGrid />
-      </section>
-      <section className="relative z-20 w-full">
-        <ServiceOfferings />
       </section>
       <section className="relative z-20 w-full">
         <WhyChooseUs />

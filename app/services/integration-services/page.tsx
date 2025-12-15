@@ -8,6 +8,7 @@ import WhyChooseUs from "@/components/Choose";
 import PremiumCTABlock from "@/components/CTA2";
 import Footer from "@/components/Footer";
 import OFBSNavbar from "@/components/Navbar";
+import Intergation from "@/components/intergation";
 
 const ICTHeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -128,7 +129,7 @@ const ICTHeroSection = () => {
           }`}
         >
           <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent">
-            ICT Solutions
+            Integration Services Solutions
           </span>
           <br />
           <span className="text-slate-900">That Transform</span>
@@ -315,10 +316,7 @@ const ICTHeroSection = () => {
         <MarketIntelligenceOverview />
       </section>
       <section className="relative z-20 w-full">
-        <MarketSegmentsGrid />
-      </section>
-      <section className="relative z-20 w-full">
-        <ServiceOfferings />
+        <Intergation/>
       </section>
       <section className="relative z-20 w-full">
         <WhyChooseUs />

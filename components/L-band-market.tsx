@@ -1,15 +1,15 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import {
-  Headphones,
-  RadioTower,
-  Share2,
-  GlobeLock,
-  ShieldCheck,
-  Landmark
+  Satellite,
+  Cpu,
+  PhoneCall,
+  PlugZap,
+  MapPin,
+  Truck
 } from "lucide-react";
 
-const KeyMarketSegments = () => {
+const LKeyMarketSegments = () => {
   const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -36,49 +36,43 @@ const KeyMarketSegments = () => {
   }, []);
 
   const segments = [
-    {
-      icon: Headphones,
-      title: "Managed Services",
-      description:
-        "OFBS excels in managed services across iDirect, Newtec, and Comtech/UHP platforms, guaranteeing dependable communication solutions."
-    },
-    {
-      icon: RadioTower,
-      title: "Point-to-Point (SCPC)",
-      description:
-        "OFBS provides scalable Point-to-Point (P2P) dedicated links using advanced industrial and HTS equipment."
-    },
-    {
-      icon: Share2,
-      title: "Point-to-Multipoint",
-      description:
-        "OFBS utilizes modern TDMA, FDMA, and CDMA technologies in our advanced Point-to-Multipoint solutions."
-    },
-    {
-      icon: GlobeLock,
-      title: "Dedicated Network Services & VNOs",
-      description:
-        "OFBS provides scalable Virtual Network Operator (VNO) solutions, enabling ISPs and IT service providers to establish and manage their own VSAT networks using our hubs and teleport infrastructure."
-    },
-    {
-      icon: ShieldCheck,
-      title: "Out-of-Band Communication",
-      description:
-        "Secure out-of-band communication ensuring network resilience, remote access, and uninterrupted monitoring during primary link failures."
-    },
-    {
-      icon: Landmark,
-      title: "VSAT Banking Connectivity Solutions",
-      description:
-        "Custom-built VSAT solutions designed specifically for banking institutions, ensuring secure, reliable, and compliant financial connectivity."
-    },
-     {
-      icon: Landmark,
-      title: " Banking Connectivity Solutions",
-      description:
-        "Custom-built VSAT solutions designed specifically for banking institutions, ensuring secure, reliable, and compliant financial connectivity."
-    }
-  ];
+  {
+    icon: Satellite,
+    title: "Inmarsat Services",
+    description:
+      "OFBS excels in managed services across iDirect, Newtec, and Comtech/UHP platforms, guaranteeing dependable communication solutions."
+  },
+  {
+    icon: Cpu,
+    title: "Cobham",
+    description:
+      "OFBS provides scalable Point-to-Point (P2P) dedicated links using advanced industrial and HTS equipment."
+  },
+  {
+    icon: PhoneCall,
+    title: "Iridium Phones & PTTs",
+    description:
+      "OFBS utilizes modern TDMA, FDMA, and CDMA technologies in our advanced Point-to-Multipoint solutions."
+  },
+  {
+    icon: PlugZap,
+    title: "Repeaters & Docking Stations",
+    description:
+      "OFBS provides scalable Virtual Network Operator (VNO) solutions, enabling ISPs and IT service providers to establish and manage their own VSAT networks using our hubs and teleport infrastructure."
+  },
+  {
+    icon: MapPin,
+    title: "GPS Satellite Tracking System (Hybrid)",
+    description:
+      "Secure out-of-band communication ensuring network resilience, remote access, and uninterrupted monitoring during primary link failures."
+  },
+  {
+    icon: Truck,
+    title: "Fleet Management System",
+    description:
+      "Custom-built VSAT solutions designed specifically for banking institutions, ensuring secure, reliable, and compliant financial connectivity."
+  }
+];
 
   return (
     <section className="relative py-32 px-6 bg-gradient-to-br from-white via-blue-50/30 to-white overflow-hidden">
@@ -178,4 +172,4 @@ const KeyMarketSegments = () => {
   );
 };
 
-export default KeyMarketSegments;
+export default LKeyMarketSegments;

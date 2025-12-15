@@ -1,15 +1,13 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import {
-  Headphones,
-  RadioTower,
-  Share2,
-  GlobeLock,
-  ShieldCheck,
-  Landmark
+  Satellite,
+  Repeat,
+  MapPin,
+  Cpu
 } from "lucide-react";
 
-const KeyMarketSegments = () => {
+const Radio = () => {
   const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -35,50 +33,39 @@ const KeyMarketSegments = () => {
     return () => observerRef.current?.disconnect();
   }, []);
 
-  const segments = [
-    {
-      icon: Headphones,
-      title: "Managed Services",
-      description:
-        "OFBS excels in managed services across iDirect, Newtec, and Comtech/UHP platforms, guaranteeing dependable communication solutions."
-    },
-    {
-      icon: RadioTower,
-      title: "Point-to-Point (SCPC)",
-      description:
-        "OFBS provides scalable Point-to-Point (P2P) dedicated links using advanced industrial and HTS equipment."
-    },
-    {
-      icon: Share2,
-      title: "Point-to-Multipoint",
-      description:
-        "OFBS utilizes modern TDMA, FDMA, and CDMA technologies in our advanced Point-to-Multipoint solutions."
-    },
-    {
-      icon: GlobeLock,
-      title: "Dedicated Network Services & VNOs",
-      description:
-        "OFBS provides scalable Virtual Network Operator (VNO) solutions, enabling ISPs and IT service providers to establish and manage their own VSAT networks using our hubs and teleport infrastructure."
-    },
-    {
-      icon: ShieldCheck,
-      title: "Out-of-Band Communication",
-      description:
-        "Secure out-of-band communication ensuring network resilience, remote access, and uninterrupted monitoring during primary link failures."
-    },
-    {
-      icon: Landmark,
-      title: "VSAT Banking Connectivity Solutions",
-      description:
-        "Custom-built VSAT solutions designed specifically for banking institutions, ensuring secure, reliable, and compliant financial connectivity."
-    },
-     {
-      icon: Landmark,
-      title: " Banking Connectivity Solutions",
-      description:
-        "Custom-built VSAT solutions designed specifically for banking institutions, ensuring secure, reliable, and compliant financial connectivity."
-    }
-  ];
+const segments = [
+  {
+    icon: Radio,
+    title: "Radios & Push-To-Talk (PTT)",
+    description:
+      "Professional two-way radio and Push-To-Talk communication solutions designed for mission-critical operations, instant group communication, and extended coverage."
+  },
+  {
+    icon: Satellite,
+    title: "L-Band & Airtime Services",
+    description:
+      "Reliable L-band satellite connectivity and airtime services ensuring continuous communication for remote, maritime, and emergency operations."
+  },
+  {
+    icon: Repeat,
+    title: "Docking Stations & Repeaters",
+    description:
+      "High-performance docking stations and radio repeaters that extend coverage, enhance signal strength, and improve communication reliability."
+  },
+  {
+    icon: MapPin,
+    title: "Tracking Solutions",
+    description:
+      "Real-time GPS and asset tracking solutions enabling accurate location monitoring, fleet visibility, and operational efficiency."
+  },
+  {
+    icon: Cpu,
+    title: "IoT Monitoring Solutions",
+    description:
+      "Smart IoT-based monitoring systems for remote assets, sensors, and infrastructure with real-time alerts, analytics, and centralized control."
+  }
+];
+
 
   return (
     <section className="relative py-32 px-6 bg-gradient-to-br from-white via-blue-50/30 to-white overflow-hidden">
@@ -97,22 +84,21 @@ const KeyMarketSegments = () => {
         >
           <div className="inline-block px-4 py-2 bg-gradient-to-r from-blue-600/10 to-blue-900/10 rounded-full border border-blue-100 mb-6">
             <span className="text-blue-600 font-semibold text-sm">
-              Market Solutions
+              GIS Capabilities
             </span>
           </div>
 
           <h2 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
-            Key Market Segments
+            GIS Key Market Segments
           </h2>
 
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Specialized enterprise satellite communication solutions designed
-            to deliver reliability, security, and performance at scale.
+            Advanced Geographic Information System solutions delivering spatial intelligence, visualization, and analytical insight for smarter decision-making.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
           {segments.map((segment, idx) => (
             <div
               key={idx}
@@ -178,4 +164,4 @@ const KeyMarketSegments = () => {
   );
 };
 
-export default KeyMarketSegments;
+export default Radio;

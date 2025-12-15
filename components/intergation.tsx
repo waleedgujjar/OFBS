@@ -1,15 +1,14 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import {
-  Headphones,
-  RadioTower,
-  Share2,
-  GlobeLock,
-  ShieldCheck,
-  Landmark
+  Puzzle,
+  ServerCog,
+  Network,
+  Video,
+  Camera
 } from "lucide-react";
 
-const KeyMarketSegments = () => {
+const Intergation = () => {
   const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -35,50 +34,39 @@ const KeyMarketSegments = () => {
     return () => observerRef.current?.disconnect();
   }, []);
 
-  const segments = [
-    {
-      icon: Headphones,
-      title: "Managed Services",
-      description:
-        "OFBS excels in managed services across iDirect, Newtec, and Comtech/UHP platforms, guaranteeing dependable communication solutions."
-    },
-    {
-      icon: RadioTower,
-      title: "Point-to-Point (SCPC)",
-      description:
-        "OFBS provides scalable Point-to-Point (P2P) dedicated links using advanced industrial and HTS equipment."
-    },
-    {
-      icon: Share2,
-      title: "Point-to-Multipoint",
-      description:
-        "OFBS utilizes modern TDMA, FDMA, and CDMA technologies in our advanced Point-to-Multipoint solutions."
-    },
-    {
-      icon: GlobeLock,
-      title: "Dedicated Network Services & VNOs",
-      description:
-        "OFBS provides scalable Virtual Network Operator (VNO) solutions, enabling ISPs and IT service providers to establish and manage their own VSAT networks using our hubs and teleport infrastructure."
-    },
-    {
-      icon: ShieldCheck,
-      title: "Out-of-Band Communication",
-      description:
-        "Secure out-of-band communication ensuring network resilience, remote access, and uninterrupted monitoring during primary link failures."
-    },
-    {
-      icon: Landmark,
-      title: "VSAT Banking Connectivity Solutions",
-      description:
-        "Custom-built VSAT solutions designed specifically for banking institutions, ensuring secure, reliable, and compliant financial connectivity."
-    },
-     {
-      icon: Landmark,
-      title: " Banking Connectivity Solutions",
-      description:
-        "Custom-built VSAT solutions designed specifically for banking institutions, ensuring secure, reliable, and compliant financial connectivity."
-    }
-  ];
+const segments = [
+  {
+    icon: Puzzle,
+    title: "Integration Solutions",
+    description:
+      "End-to-end system integration services that connect hardware, software, and enterprise platforms into a unified, secure, and high-performance ecosystem."
+  },
+  {
+    icon: ServerCog,
+    title: "Network & Data Center Integrators (Racking & Stacking)",
+    description:
+      "Professional data center integration services including rack design, equipment installation, structured cabling, power management, and commissioning."
+  },
+  {
+    icon: Network,
+    title: "ICT Integrators",
+    description:
+      "Comprehensive ICT integration covering network infrastructure, VoIP systems, security solutions, and enterprise communication platforms."
+  },
+  {
+    icon: Video,
+    title: "Video Conferencing",
+    description:
+      "Integrated video conferencing solutions with room systems, cloud platforms, secure connectivity, and enterprise collaboration tools."
+  },
+  {
+    icon: Camera,
+    title: "Video Surveillance",
+    description:
+      "End-to-end CCTV and video surveillance integration including cameras, NVRs, analytics, remote monitoring, and centralized security management."
+  }
+];
+
 
   return (
     <section className="relative py-32 px-6 bg-gradient-to-br from-white via-blue-50/30 to-white overflow-hidden">
@@ -97,22 +85,21 @@ const KeyMarketSegments = () => {
         >
           <div className="inline-block px-4 py-2 bg-gradient-to-r from-blue-600/10 to-blue-900/10 rounded-full border border-blue-100 mb-6">
             <span className="text-blue-600 font-semibold text-sm">
-              Market Solutions
+              GIS Capabilities
             </span>
           </div>
 
           <h2 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
-            Key Market Segments
+            GIS Key Market Segments
           </h2>
 
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Specialized enterprise satellite communication solutions designed
-            to deliver reliability, security, and performance at scale.
+            Advanced Geographic Information System solutions delivering spatial intelligence, visualization, and analytical insight for smarter decision-making.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
           {segments.map((segment, idx) => (
             <div
               key={idx}
@@ -178,4 +165,4 @@ const KeyMarketSegments = () => {
   );
 };
 
-export default KeyMarketSegments;
+export default Intergation;

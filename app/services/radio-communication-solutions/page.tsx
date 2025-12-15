@@ -8,7 +8,7 @@ import WhyChooseUs from "@/components/Choose";
 import PremiumCTABlock from "@/components/CTA2";
 import Footer from "@/components/Footer";
 import OFBSNavbar from "@/components/Navbar";
-import ICT from "@/components/ICT";
+import Radio from "@/components/radio";
 
 const ICTHeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -316,7 +316,7 @@ const ICTHeroSection = () => {
         <MarketIntelligenceOverview />
       </section>
       <section className="relative z-20 w-full">
-        <ICT />
+        <Radio />
       </section>
       <section className="relative z-20 w-full">
         <WhyChooseUs />

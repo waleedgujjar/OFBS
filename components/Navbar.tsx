@@ -26,10 +26,11 @@ const OFBSNavbar = () => {
 
   const solutions = [
     { name: "Satellite Services", desc: "Real-time tracking & optimization", href: "/services/satellite-services" },
-    { name: "L-Band Services", desc: "Streamline operations end-to-end", href: "/services/l-band" },
+    { name: "L-Band Satellite Services", desc: "Streamline operations end-to-end", href: "/services/l-band" },
     { name: "GIS", desc: "Connected ecosystem solutions", href: "/services/gis" },
     { name: "ICT Services", desc: "Seamless ERP & CRM sync", href: "/services/ict-services" },
-    { name: "Integration Services", desc: "Seamless ERP & CRM sync", href: "/services/integration-services" }
+    { name: "Integration Services", desc: "Seamless ERP & CRM sync", href: "/services/integration-services" },
+     { name: "Radio Communication Solutions", desc: "Seamless ERP & CRM sync", href: "/services/radio-communication-solutions" }
   ];
 
   const navLinks = [
@@ -59,14 +60,15 @@ const OFBSNavbar = () => {
 <Link href="/" className="flex-shrink-0 group cursor-pointer">
   <div className="flex items-center space-x-3">
     <div className="relative">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB] to-[#1E3A8A] rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition duration-500"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB] to-[#1E3A8A] rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition duration-500"></div>
 
-      <div className="relative w-16 h-16 rounded-lg flex items-center justify-center transform group-hover:scale-110 transition duration-500 overflow-hidden">
+      {/* Increased size here */}
+      <div className="relative w-30 h-30 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition duration-500 overflow-hidden">
         <Image 
           src="/logo.png" 
           alt="OFBS Logo" 
-          width={120}
-          height={70}
+          width={220}
+          height={90}
           className="object-contain"
           priority
         />

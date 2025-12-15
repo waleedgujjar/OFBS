@@ -2,12 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { ArrowRight, MessageSquare, Globe2 } from "lucide-react";
 import MarketIntelligenceOverview from "@/components/MarketIntelligenceOverview";
-import MarketSegmentsGrid from "@/components/KeySegment";
-import ServiceOfferings from "@/components/ServicesGrid";
 import WhyChooseUs from "@/components/Choose";
 import PremiumCTABlock from "@/components/CTA2";
 import Footer from "@/components/Footer";
 import OFBSNavbar from "@/components/Navbar";
+import LKeyMarketSegments from "@/components/L-band-market";
 
 const ICTHeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -128,7 +127,7 @@ const ICTHeroSection = () => {
           }`}
         >
           <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent">
-            ICT Solutions
+           L-Band Services Solutions
           </span>
           <br />
           <span className="text-slate-900">That Transform</span>
@@ -315,10 +314,7 @@ const ICTHeroSection = () => {
         <MarketIntelligenceOverview />
       </section>
       <section className="relative z-20 w-full">
-        <MarketSegmentsGrid />
-      </section>
-      <section className="relative z-20 w-full">
-        <ServiceOfferings />
+        <LKeyMarketSegments />
       </section>
       <section className="relative z-20 w-full">
         <WhyChooseUs />
