@@ -8,10 +8,6 @@
     "start": "next start",
     "lint": "eslint"
   },
-"engines": {
-  "node": "21.x"
-}
-,
   "dependencies": {
     "framer-motion": "^12.23.25",
     "gsap": "^3.13.0",
