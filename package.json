@@ -4,14 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "lint": "eslint",
-"build": {
-    "env": {
-      "NODE_OPTIONS": "--max-old-space-size=4096"
-    }
-  },  "start": "node --max-old-space-size=4096 node_modules/.bin/next start"
-},
-
+    "build": "NODE_OPTIONS='--max-old-space-size=4096' next build",
+    "start": "NODE_OPTIONS='--max-old-space-size=4096' next start"
+  },
   "dependencies": {
     "framer-motion": "^12.23.25",
     "gsap": "^3.13.0",
@@ -26,6 +21,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
     "tailwindcss": "^4",
